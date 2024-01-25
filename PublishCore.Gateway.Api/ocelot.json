@@ -1,0 +1,416 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Auth/Login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Auth/Login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Empresa",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Empresa",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Empresa/Select",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Empresa/Select",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Empresa/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Empresa/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Empresa/Register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Empresa/Register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Empresa/Edit/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Empresa/Edit/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Empresa/Remove/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Empresa/Remove/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Usuario",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Usuario",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Usuario/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Usuario/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Usuario/Register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Usuario/Register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Usuario/Edit/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Usuario/Edit/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Usuario/Remove/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.auth.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Usuario/Remove/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/BannerPrincipal",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/BannerPrincipal",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/BannerPrincipal/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/BannerPrincipal/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/BannerPrincipal/Register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/BannerPrincipal/Register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/BannerPrincipal/Edit/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/BannerPrincipal/Edit/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/BannerPrincipal/Remove/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/BannerPrincipal/Remove/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Boletin",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Boletin",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Boletin/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Boletin/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Boletin/Register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Boletin/Register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Boletin/Edit/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Boletin/Edit/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Boletin/Remove/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Boletin/Remove/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Parametro",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Parametro",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Parametro/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Parametro/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Parametro/Register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Parametro/Register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Parametro/Edit/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Parametro/Edit/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Parametro/Remove/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Parametro/Remove/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ServicioBeneficio",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ServicioBeneficio",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ServicioBeneficio/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ServicioBeneficio/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ServicioBeneficio/Register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ServicioBeneficio/Register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ServicioBeneficio/Edit/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ServicioBeneficio/Edit/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ServicioBeneficio/Remove/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.publish.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ServicioBeneficio/Remove/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/hub",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "publishcore.hubs.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/hub",
+      "QoSOptions": {
+        "TimeoutValue": 320000
+      },
+      "Priority": 50,
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      }
+    }
+  ],
+    "GlobalConfiguration": {
+        "BaseUrl": "apiadmin.tranquiexpress.com",
+        "SkipSslValidation": true
+    }
+}

@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  publishcore.gateway.api:
+    image: ${DOCKER_REGISTRY-}publishcoregatewayapi
+    build:
+      context: .
+      dockerfile: PublishCore.Gateway.Api/Dockerfile
+
+  publishcore.hosted.api:
+    image: ${DOCKER_REGISTRY-}publishcorehostedapi
+    build:
+      context: .
+      dockerfile: PublishCore.Hosted.Api/Dockerfile
+
+
+  publishcore.hubs.api:
+    image: ${DOCKER_REGISTRY-}publishcorehubsapi
+    build:
+      context: .
+      dockerfile: PublishCore.Hubs.Api/Dockerfile
+
+
+  publishcore.publish.api:
+    image: ${DOCKER_REGISTRY-}publishcorepublishapi
+    build:
+      context: .
+      dockerfile: PublishCore.Publish.Api/Dockerfile
+
+
+  publishcore.auth.api:
+    image: ${DOCKER_REGISTRY-}publishcoreauthapi
+    build:
+      context: .
+      dockerfile: PublishCore.Auth.Api/Dockerfile
+

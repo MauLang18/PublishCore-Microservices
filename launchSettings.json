@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "publishcore.gateway.api": "StartDebugging",
+        "publishcore.hosted.api": "StartDebugging",
+        "publishcore.hubs.api": "StartDebugging",
+        "publishcore.publish.api": "StartDebugging",
+        "publishcore.auth.api": "StartDebugging"
+      }
+    }
+  }
+}
