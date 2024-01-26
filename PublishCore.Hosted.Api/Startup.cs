@@ -38,7 +38,7 @@ namespace PublishCore.Hosted.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PublishCoreHosted", Version = "v1" });
             });
 
-            var config = new ProducerConfig { BootstrapServers = "190.113.124.155:9092" };
+            var config = new ProducerConfig { BootstrapServers = "localhost:9092,190.113.124.155:9092" };
 
             services.AddSingleton<IProducer<Null, string>>(x => new ProducerBuilder<Null, string>(config).Build());
             services.AddSingleton<IProducerApplication, ProducerApplication>();
