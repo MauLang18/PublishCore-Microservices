@@ -22,7 +22,7 @@ namespace PublishCore.Hubs.Application.Extensions
 
             var config = new ConsumerConfig {
                 GroupId = "publishCore-consumer-group",
-                BootstrapServers = "localhost:9092,190.113.124.155:9092",
+                BootstrapServers = "broker:29092",
                 AutoOffsetReset = AutoOffsetReset.Earliest
             };
 
