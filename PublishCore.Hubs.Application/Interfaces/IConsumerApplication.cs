@@ -2,6 +2,6 @@
 {
     public interface IConsumerApplication
     {
-        public void StartConsuming(string topic, string topicSignalR);
+        public Task<string> StartConsuming(string topic, string topicSignalR);
     }
 }

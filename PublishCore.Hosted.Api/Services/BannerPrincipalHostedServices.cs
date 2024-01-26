@@ -59,11 +59,6 @@ namespace PublishCore.Hosted.Api.Services
                         fechaProgramacion <= DateTime.Now &&
                         estado == (int)StateTypes.Inactivo)
                         {
-                            Console.WriteLine($"ID: {id}");
-                            Console.WriteLine($"Nombre: {nombre}");
-                            Console.WriteLine("Programación activa y fecha de programación coincide con la actual.");
-                            Console.WriteLine("-----------");
-
                             item.Id = id;
                             item.Nombre = nombre;
                             item.Imagen = imagen;
@@ -81,16 +76,8 @@ namespace PublishCore.Hosted.Api.Services
 
                             await _producer.ProduceAsync("bannerActualizado", JsonConvert.SerializeObject(item));
                         }
-                        else
-                        {
-                            Console.WriteLine($"La programación no está activa o la fecha de programación no coincide con la actual para el ID: {id}");
-                        }
                     }
                 }
-            }
-            else
-            {
-                Console.WriteLine("No se pudieron obtener los datos de los banners de la base de datos.");
             }
         }
 

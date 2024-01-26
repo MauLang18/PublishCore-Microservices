@@ -1,10 +1,10 @@
 using PublishCore.Hubs.Application.Extensions;
 using PublishCore.Hubs.Application.Hubs;
-using PublishCore.Hubs.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 
+builder.Services.AddSignalR();
 builder.Services.AddInjectionApplication(Configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -37,5 +37,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapHub<PublishCoreHubs>("Hub");
+app.UseExceptionHandler("/error");
 
 app.Run();

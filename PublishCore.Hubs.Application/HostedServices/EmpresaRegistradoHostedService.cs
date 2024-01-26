@@ -1,16 +1,20 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Hosting;
+using PublishCore.Hubs.Application.Hubs;
 using PublishCore.Hubs.Application.Interfaces;
 
 namespace PublishCore.Hubs.Application.HostedServices
 {
-    public class BannerPrincipalHostedService : IHostedService, IDisposable
+    public class EmpresaRegistradoHostedService : IHostedService, IDisposable
     {
         private readonly IConsumerApplication _consumerApplication;
+        private readonly IHubContext<PublishCoreHubs> _hubContext;
         private Timer _timer;
 
-        public BannerPrincipalHostedService(IConsumerApplication consumerApplication)
+        public EmpresaRegistradoHostedService(IConsumerApplication consumerApplication, IHubContext<PublishCoreHubs> hubContext)
         {
             _consumerApplication = consumerApplication;
+            _hubContext = hubContext;
         }
 
         public Task StartAsync(CancellationToken stoppingToken)
@@ -21,16 +25,14 @@ namespace PublishCore.Hubs.Application.HostedServices
             return Task.CompletedTask;
         }
 
-        private async void SendInfo(object state)
+        private void SendInfo(object state)
         {
-            _consumerApplication.StartConsuming("bannerActualizado", "BannerActualizado");
-            Console.WriteLine("1");
+            var message = _consumerApplication.StartConsuming("empresaRegistrado", "EmpresaRegistrado");
 
-            _consumerApplication.StartConsuming("bannerEliminado", "BannerEliminado");
-            Console.WriteLine("2");
-
-            _consumerApplication.StartConsuming("bannerRegistrado", "BannerRegistrado");
-            Console.WriteLine("3");
+            if (message != null)
+            {
+                _hubContext.Clients.All.SendAsync("EmpresaRegistrado", message);
+            }
         }
         
 

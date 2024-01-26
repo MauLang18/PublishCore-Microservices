@@ -12,8 +12,6 @@ public partial class TbEmpresa : BaseEntity
 
     public string Empresa { get; set; } = null!;
 
-    public int EmpresaId { get; set; }
-
     public virtual ICollection<TbBannerPrincipal> TbBannerPrincipals { get; set; }
     public virtual ICollection<TbBoletin> TbBoletins { get; set; }
     public virtual ICollection<TbParametro> TbParametros { get; set; }

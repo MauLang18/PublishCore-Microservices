@@ -1,16 +1,20 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Hosting;
+using PublishCore.Hubs.Application.Hubs;
 using PublishCore.Hubs.Application.Interfaces;
 
 namespace PublishCore.Hubs.Application.HostedServices
 {
-    public class BoletinHostedService : IHostedService, IDisposable
+    public class ParametroActualizadoHostedService : IHostedService, IDisposable
     {
         private readonly IConsumerApplication _consumerApplication;
+        private readonly IHubContext<PublishCoreHubs> _hubContext;
         private Timer _timer;
 
-        public BoletinHostedService(IConsumerApplication consumerApplication)
+        public ParametroActualizadoHostedService(IConsumerApplication consumerApplication, IHubContext<PublishCoreHubs> hubContext)
         {
             _consumerApplication = consumerApplication;
+            _hubContext = hubContext;
         }
 
         public Task StartAsync(CancellationToken stoppingToken)
@@ -21,16 +25,14 @@ namespace PublishCore.Hubs.Application.HostedServices
             return Task.CompletedTask;
         }
 
-        private async void SendInfo(object state)
+        private void SendInfo(object state)
         {
-            _consumerApplication.StartConsuming("boletinActualizado", "BoletinActualizado");
-            Console.WriteLine("1");
+            var message = _consumerApplication.StartConsuming("parametroActualizado", "ParametroActualizado");
 
-            _consumerApplication.StartConsuming("boletinEliminado", "BoletinEliminado");
-            Console.WriteLine("2");
-
-            _consumerApplication.StartConsuming("boletinRegistrado", "BoletinRegistrado");
-            Console.WriteLine("3");
+            if(message != null)
+            {
+                _hubContext.Clients.All.SendAsync("ParametroActualizado", message);
+            }
         }
         
 

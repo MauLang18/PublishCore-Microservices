@@ -396,9 +396,7 @@
         }
       ],
       "UpstreamPathTemplate": "/hub",
-      "QoSOptions": {
-        "TimeoutValue": 320000
-      },
+      "UpstreamHttpMethod": [ "GET" ],
       "Priority": 50,
       "RateLimitOptions": {
         "ClientWhitelist": [],
@@ -410,7 +408,6 @@
     }
   ],
     "GlobalConfiguration": {
-        "BaseUrl": "apiadmin.tranquiexpress.com",
-        "SkipSslValidation": true
+        "BaseUrl": "apiadmin.tranquiexpress.com"
     }
 }

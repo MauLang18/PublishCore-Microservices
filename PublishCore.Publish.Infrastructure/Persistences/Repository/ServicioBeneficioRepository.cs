@@ -15,7 +15,7 @@ namespace PublishCore.Publish.Infrastructure.Persistences.Repository
         {
             var response = new BaseEntityResponse<TbServicioBeneficio>();
 
-            var parametros = GetEntityQuery(x => x.UsuarioEliminacionAuditoria == null && x.FechaEliminacionAuditoria == null)
+            var parametros = GetEntityQuery(x => x.UsuarioEliminacionAuditoria == null && x.FechaEliminacionAuditoria == null && x.EmpresaId == filters.Empresa)
                 .AsNoTracking();
 
             if (filters.NumFilter is not null && !string.IsNullOrEmpty(filters.TextFilter))

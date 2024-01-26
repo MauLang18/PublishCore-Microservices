@@ -7,16 +7,14 @@ namespace PublishCore.Hubs.Application.Services
 {
     public class ConsumerApplication : IConsumerApplication
     {
-        private readonly IHubContext<PublishCoreHubs> _hubContext;
         private readonly IConsumer<Null, string> _consumer;
 
-        public ConsumerApplication(IHubContext<PublishCoreHubs> hubContext, IConsumer<Null, string> consumer)
+        public ConsumerApplication(IConsumer<Null, string> consumer)
         {
-            _hubContext = hubContext;
             _consumer = consumer;
         }
 
-        public void StartConsuming(string topic, string topicSignalR)
+        public async Task<string> StartConsuming(string topic, string topicSignalR)
         {
             _consumer.Subscribe(topic);
 
@@ -32,18 +30,20 @@ namespace PublishCore.Hubs.Application.Services
                     {
                         var message = consumeResult.Message.Value;
 
-                        Console.WriteLine(message);
-
-                        _hubContext.Clients.All.SendAsync(topicSignalR, message);
+                        return message;
                     }
-                    
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-        }
+            finally
+            {
+                _consumer.Unsubscribe();
+            }
 
+            return null;
+        }
     }
 }

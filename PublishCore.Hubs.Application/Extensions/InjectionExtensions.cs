@@ -18,8 +18,6 @@ namespace PublishCore.Hubs.Application.Extensions
                 options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies().Where(p => !p.IsDynamic));
             });*/
 
-            services.AddSignalR();
-
             var config = new ConsumerConfig {
                 GroupId = "publishCore-consumer-group",
                 BootstrapServers = "broker:29092",
@@ -29,12 +27,29 @@ namespace PublishCore.Hubs.Application.Extensions
             services.AddSingleton<IConsumer<Null, string>>(x => new ConsumerBuilder<Null, string>(config).Build());
             services.AddSingleton<IConsumerApplication, ConsumerApplication>();
 
-            services.AddHostedService<UsuarioHostedService>();
-            services.AddHostedService<BannerPrincipalHostedService>();
-            services.AddHostedService<BoletinHostedService>();
-            services.AddHostedService<EmpresaHostedService>();
-            services.AddHostedService<ParametroHostedService>();
-            services.AddHostedService<ServicioBeneficioHostedService>();
+            services.AddHostedService<UsuarioActualizadoHostedService>();
+            services.AddHostedService<UsuarioRegistradoHostedService>();
+            services.AddHostedService<UsuarioEliminadoHostedService>();
+
+            services.AddHostedService<BannerPrincipalActualizadoHostedService>();
+            services.AddHostedService<BannerPrincipalRegistradoHostedService>();
+            services.AddHostedService<BannerPrincipalEliminadoHostedService>();
+
+            services.AddHostedService<BoletinActualizadoHostedService>();
+            services.AddHostedService<BoletinRegistradoHostedService>();
+            services.AddHostedService<BoletinEliminadoHostedService>();
+
+            services.AddHostedService<EmpresaActualizadoHostedService>();
+            services.AddHostedService<EmpresaRegistradoHostedService>();
+            services.AddHostedService<EmpresaEliminadoHostedService>();
+
+            services.AddHostedService<ParametroActualizadoHostedService>();
+            services.AddHostedService<ParametroRegistradoHostedService>();
+            services.AddHostedService<ParametroEliminadoHostedService>();
+
+            services.AddHostedService<ServicioBeneficioActualizadoHostedService>();
+            services.AddHostedService<ServicioBeneficioRegistradoHostedService>();
+            services.AddHostedService<ServicioBeneficioEliminadoHostedService>();
 
             return services;
         }

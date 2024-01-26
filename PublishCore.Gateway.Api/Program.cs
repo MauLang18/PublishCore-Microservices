@@ -1,11 +1,8 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 var Cors = "Cors";
-
-ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
