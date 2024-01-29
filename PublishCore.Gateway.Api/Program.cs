@@ -1,8 +1,15 @@
+using Microsoft.AspNetCore.Mvc;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Values;
 
 var builder = WebApplication.CreateBuilder(args);
 var Cors = "Cors";
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = null; // O establece el tamaño deseado aquí
+});
 
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
@@ -18,6 +25,11 @@ builder.Services.AddCors(options =>
             builder.AllowAnyHeader();
             builder.AllowCredentials();
         });
+});
+
+builder.Services.Configure<MvcOptions>(options =>
+{
+    options.MaxModelBindingCollectionSize = int.MaxValue;
 });
 
 var app = builder.Build();

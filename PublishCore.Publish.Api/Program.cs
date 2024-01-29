@@ -3,11 +3,17 @@ using PublishCore.Publish.Application.Extensions;
 using PublishCore.Publish.Infrastructure.Extensions;
 using PublishCore.Auth.JWT;
 using WatchDog;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 // Add services to the container.
 var Cors = "Cors";
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = null; // O establece el tamaño deseado aquí
+});
 
 builder.Services.AddInjectionInfrastructure(Configuration);
 builder.Services.AddInjectionApplication(Configuration);
@@ -28,6 +34,11 @@ builder.Services.AddCors(options =>
             builder.AllowAnyHeader();
             builder.AllowCredentials();
         });
+});
+
+builder.Services.Configure<MvcOptions>(options =>
+{
+    options.MaxModelBindingCollectionSize = int.MaxValue;
 });
 
 var app = builder.Build();

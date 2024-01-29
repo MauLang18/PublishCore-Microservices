@@ -36,6 +36,7 @@ namespace PublishCore.Publish.Api.Controllers
         }
 
         [HttpPost("Register")]
+        [RequestSizeLimit(52428800)]
         public async Task<IActionResult> RegisterBannerPrincipal([FromForm] BannerPrincipalRequestDto requestDto)
         {
             var response = await _bannerPrincipalApplication.RegisterBannerPrincipal(requestDto);
@@ -44,6 +45,7 @@ namespace PublishCore.Publish.Api.Controllers
         }
 
         [HttpPut("Edit/{id:int}")]
+        [RequestSizeLimit(52428800)]
         public async Task<IActionResult> EditBannerPrincipal(int id, [FromForm] BannerPrincipalRequestDto requestDto)
         {
             var response = await _bannerPrincipalApplication.EditBannerPrincipal(id, requestDto);

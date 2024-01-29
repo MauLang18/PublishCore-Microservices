@@ -35,6 +35,7 @@ namespace PublishCore.Publish.Api.Controllers
         }
 
         [HttpPost("Register")]
+        [RequestSizeLimit(52428800)]
         public async Task<IActionResult> RegisterServicioBeneficio([FromForm] ServicioBeneficioRequestDto requestDto)
         {
             var response = await _servicioBeneficioApplication.RegisterServicioBeneficio(requestDto);
@@ -43,6 +44,7 @@ namespace PublishCore.Publish.Api.Controllers
         }
 
         [HttpPut("Edit/{id:int}")]
+        [RequestSizeLimit(52428800)]
         public async Task<IActionResult> EditServicioBeneficio(int id, [FromForm] ServicioBeneficioRequestDto requestDto)
         {
             var response = await _servicioBeneficioApplication.EditServicioBeneficio(id, requestDto);

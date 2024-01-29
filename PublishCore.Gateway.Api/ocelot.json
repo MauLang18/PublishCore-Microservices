@@ -404,6 +404,11 @@
         "Period": "1s",
         "PeriodTimespan": 1,
         "Limit": 10
+      },
+      "LoadBalancerOptions": {
+        "Type": "CookieStickySessions",
+        "Key": "ASP.NET_SessionId",
+        "Expiry": 1800000
       }
     }
   ],

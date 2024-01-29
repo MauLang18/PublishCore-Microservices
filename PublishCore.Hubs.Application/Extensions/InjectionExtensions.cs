@@ -27,29 +27,7 @@ namespace PublishCore.Hubs.Application.Extensions
             services.AddSingleton<IConsumer<Null, string>>(x => new ConsumerBuilder<Null, string>(config).Build());
             services.AddSingleton<IConsumerApplication, ConsumerApplication>();
 
-            services.AddHostedService<UsuarioActualizadoHostedService>();
-            services.AddHostedService<UsuarioRegistradoHostedService>();
-            services.AddHostedService<UsuarioEliminadoHostedService>();
-
-            services.AddHostedService<BannerPrincipalActualizadoHostedService>();
-            services.AddHostedService<BannerPrincipalRegistradoHostedService>();
-            services.AddHostedService<BannerPrincipalEliminadoHostedService>();
-
-            services.AddHostedService<BoletinActualizadoHostedService>();
-            services.AddHostedService<BoletinRegistradoHostedService>();
-            services.AddHostedService<BoletinEliminadoHostedService>();
-
-            services.AddHostedService<EmpresaActualizadoHostedService>();
-            services.AddHostedService<EmpresaRegistradoHostedService>();
-            services.AddHostedService<EmpresaEliminadoHostedService>();
-
-            services.AddHostedService<ParametroActualizadoHostedService>();
-            services.AddHostedService<ParametroRegistradoHostedService>();
-            services.AddHostedService<ParametroEliminadoHostedService>();
-
-            services.AddHostedService<ServicioBeneficioActualizadoHostedService>();
-            services.AddHostedService<ServicioBeneficioRegistradoHostedService>();
-            services.AddHostedService<ServicioBeneficioEliminadoHostedService>();
+            services.AddHostedService<PublishCoreHostedServices>();
 
             return services;
         }

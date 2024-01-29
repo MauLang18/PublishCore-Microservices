@@ -36,6 +36,7 @@ namespace PublishCore.Publish.Api.Controllers
         }
 
         [HttpPost("Register")]
+        [RequestSizeLimit(52428800)]
         public async Task<IActionResult> RegisterBoletin([FromForm] BoletinRequestDto requestDto)
         {
             var response = await _boletinApplication.RegisterBoletin(requestDto);
@@ -44,6 +45,7 @@ namespace PublishCore.Publish.Api.Controllers
         }
 
         [HttpPut("Edit/{id:int}")]
+        [RequestSizeLimit(52428800)]
         public async Task<IActionResult> EditBoletin(int id, [FromForm] BoletinRequestDto requestDto)
         {
             var response = await _boletinApplication.EditBoletin(id, requestDto);
