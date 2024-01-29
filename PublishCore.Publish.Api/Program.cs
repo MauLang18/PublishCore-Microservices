@@ -1,19 +1,17 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using PublishCore.Auth.JWT;
 using PublishCore.Publish.Api.Extensions;
 using PublishCore.Publish.Application.Extensions;
 using PublishCore.Publish.Infrastructure.Extensions;
-using PublishCore.Auth.JWT;
 using WatchDog;
-using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 // Add services to the container.
 var Cors = "Cors";
-
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.Limits.MaxRequestBodySize = null; // O establece el tamaño deseado aquí
-});
 
 builder.Services.AddInjectionInfrastructure(Configuration);
 builder.Services.AddInjectionApplication(Configuration);
@@ -36,9 +34,14 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.Configure<MvcOptions>(options =>
+builder.Services.Configure<IISServerOptions>(options =>
 {
-    options.MaxModelBindingCollectionSize = int.MaxValue;
+    options.MaxRequestBodySize = int.MaxValue; // o el tamaño máximo deseado
+});
+
+builder.Services.Configure<KestrelServerOptions>(options =>
+{
+    options.Limits.MaxRequestBodySize = int.MaxValue; // o el tamaño máximo deseado
 });
 
 var app = builder.Build();

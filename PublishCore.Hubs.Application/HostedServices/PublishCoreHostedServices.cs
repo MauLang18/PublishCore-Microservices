@@ -11,6 +11,8 @@ namespace PublishCore.Hubs.Application.HostedServices
         private readonly IHubContext<PublishCoreHubs> _hubContext;
         private Timer _timer;
         private int i = 0;
+        private string topic = "";
+        private string signalR = "";
 
         public PublishCoreHostedServices(IConsumerApplication consumerApplication, IHubContext<PublishCoreHubs> hubContext)
         {
@@ -26,10 +28,9 @@ namespace PublishCore.Hubs.Application.HostedServices
 
         private async Task SendInfo(object state)
         {
-            var topic = "";
-            var signalR = "";
+            int originalI = i;
 
-            switch (i)
+            switch (originalI)
             {
                 case 0:
                     topic = "bannerRegistrado";
@@ -123,7 +124,7 @@ namespace PublishCore.Hubs.Application.HostedServices
                     break;
             }
 
-            if (i == 18)
+            if (originalI == 18)
             {
                 i = 0;
             }
