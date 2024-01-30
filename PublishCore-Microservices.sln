@@ -51,11 +51,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublishCore.Hubs.Api", "Pub
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublishCore.Hubs.Domain", "PublishCore.Hubs.Domain\PublishCore.Hubs.Domain.csproj", "{D8AEA4A0-D43B-460C-9F72-EAB92299AD5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishCore.Hosted.Utilities", "PublishCore.Hosted.Utilities\PublishCore.Hosted.Utilities.csproj", "{90FCB7BF-343A-46D9-B830-ACE38A8079E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublishCore.Hosted.Utilities", "PublishCore.Hosted.Utilities\PublishCore.Hosted.Utilities.csproj", "{90FCB7BF-343A-46D9-B830-ACE38A8079E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishCore.Hosted.Api", "PublishCore.Hosted.Api\PublishCore.Hosted.Api.csproj", "{B7FF795D-C3C5-45FD-BC09-1D4031F4AF18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublishCore.Hosted.Api", "PublishCore.Hosted.Api\PublishCore.Hosted.Api.csproj", "{B7FF795D-C3C5-45FD-BC09-1D4031F4AF18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishCore.Gateway.Api", "PublishCore.Gateway.Api\PublishCore.Gateway.Api.csproj", "{AB932399-6083-49D5-A079-46B091A6CEEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublishCore.Gateway.Api", "PublishCore.Gateway.Api\PublishCore.Gateway.Api.csproj", "{AB932399-6083-49D5-A079-46B091A6CEEC}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BC5F985D-6386-400E-89E4-CB4DD3AE0BE2}"
 EndProject

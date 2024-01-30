@@ -74,7 +74,8 @@ namespace PublishCore.Hosted.Api.Services
                                 await updateContext.SaveChangesAsync();
                             }
 
-                            await _producer.ProduceAsync("bannerActualizado", JsonConvert.SerializeObject(item));
+                            item.Dirigido = "bannerActualizado";
+                            await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(item));
                         }
                     }
                 }

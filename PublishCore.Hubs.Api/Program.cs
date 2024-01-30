@@ -36,7 +36,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHub<PublishCoreHubs>("Hub");
+app.MapHub<PublishCoreHubs>("/Hub");
 app.UseExceptionHandler("/error");
 
 app.Run();

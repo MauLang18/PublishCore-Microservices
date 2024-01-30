@@ -104,11 +104,13 @@ namespace PublishCore.Publish.Application.Services
 
                 var bannerPrincipal = _mapper.Map<TbBannerPrincipal>(request);
                 bannerPrincipal.Imagen = await _unitOfWork.Storage.SaveFile(request.Imagen!);
+
+                bannerPrincipal.Dirigido = "bannerRegistrado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(bannerPrincipal));
                 response.Data = await _unitOfWork.BannerPrincipal.RegisterAsync(bannerPrincipal);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("bannerRegistrado", JsonConvert.SerializeObject(bannerPrincipal));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_SAVE;
                 }
@@ -155,11 +157,12 @@ namespace PublishCore.Publish.Application.Services
                     bannerPrincipal.Imagen = bannerPrincipalEdit.Data.Imagen!;
                 }
 
+                bannerPrincipal.Dirigido = "bannerActualizado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(bannerPrincipal));
                 response.Data = await _unitOfWork.BannerPrincipal.EditAsync(bannerPrincipal);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("bannerActualizado", JsonConvert.SerializeObject(bannerPrincipal));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_UPDATE;
                 }
@@ -184,20 +187,22 @@ namespace PublishCore.Publish.Application.Services
             var response = new BaseResponse<bool>();
             try
             {
-                var bannerPrincipal = await BannerPrincipalById(id);
+                var request = await BannerPrincipalById(id);
 
-                if (bannerPrincipal.Data is null)
+                if (request.Data is null)
                 {
                     response.IsSuccess = false;
                     response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
                     return response;
                 }
 
+                var bannerPrincipal = _mapper.Map<TbBannerPrincipal>(request);
+                bannerPrincipal.Dirigido = "bannerEliminado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(bannerPrincipal));
                 response.Data = await _unitOfWork.BannerPrincipal.RemoveAsync(id);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("bannerEliminado", JsonConvert.SerializeObject(bannerPrincipal));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_DELETE;
                 }

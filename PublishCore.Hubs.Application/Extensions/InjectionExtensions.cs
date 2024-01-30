@@ -1,6 +1,7 @@
 ﻿using Confluent.Kafka;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using PublishCore.Hubs.Application.HostedServices;
 using PublishCore.Hubs.Application.Interfaces;
 using PublishCore.Hubs.Application.Services;

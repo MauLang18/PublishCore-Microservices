@@ -33,4 +33,3 @@ services:
     build:
       context: .
       dockerfile: PublishCore.Auth.Api/Dockerfile
-

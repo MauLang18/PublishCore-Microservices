@@ -104,11 +104,13 @@ namespace PublishCore.Publish.Application.Services
 
                 var boletin = _mapper.Map<TbBoletin>(requestDto);
                 boletin.Imagen = await _unitOfWork.Storage.SaveFile(requestDto.Imagen!);
+
+                boletin.Dirigido = "boletinRegistrado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(boletin));
                 response.Data = await _unitOfWork.Boletin.RegisterAsync(boletin);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("boletinRegistrado", JsonConvert.SerializeObject(boletin));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_SAVE;
                 }
@@ -154,11 +156,12 @@ namespace PublishCore.Publish.Application.Services
                     boletin.Imagen = boletinEdit.Data.Imagen!;
                 }
 
+                boletin.Dirigido = "boletinActualizado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(boletin));
                 response.Data = await _unitOfWork.Boletin.EditAsync(boletin);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("boletinActualizado", JsonConvert.SerializeObject(boletin));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_UPDATE;
                 }
@@ -183,20 +186,22 @@ namespace PublishCore.Publish.Application.Services
             var response = new BaseResponse<bool>();
             try
             {
-                var boletin = await BoletinById(id);
+                var requestDto = await BoletinById(id);
 
-                if (boletin.Data is null)
+                if (requestDto.Data is null)
                 {
                     response.IsSuccess = false;
                     response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
                     return response;
                 }
 
+                var boletin = _mapper.Map<TbBoletin>(requestDto);
+                boletin.Dirigido = "boletinRegistrado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(boletin));
                 response.Data = await _unitOfWork.Boletin.RemoveAsync(id);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("boletinEliminado", JsonConvert.SerializeObject(boletin));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_DELETE;
                 }

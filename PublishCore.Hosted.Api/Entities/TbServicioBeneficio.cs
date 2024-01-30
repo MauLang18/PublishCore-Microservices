@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PublishCore.Hosted.Api.Entities
 {
@@ -15,6 +16,9 @@ namespace PublishCore.Hosted.Api.Entities
         public int? Programacion { get; set; }
 
         public DateTime? FechaProgramacion { get; set; }
+
+        [NotMapped]
+        public string? Dirigido { get; set; }
 
         public virtual TbEmpresa EmpresaNavigation { get; set; } = null!;
     }

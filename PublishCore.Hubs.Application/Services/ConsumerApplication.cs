@@ -32,13 +32,7 @@ namespace PublishCore.Hubs.Application.Services
                     {
                         var message = consumeResult.Message.Value;
 
-                        Console.WriteLine(signalR);
-                        Console.WriteLine($"topic {topic}");
-                        Console.WriteLine($"topic primera mayuscula {char.ToUpper(topic[0]) + topic.Substring(1)}");
-                        Console.WriteLine("consumer: " + message);
-                        await _hubContext.Clients.All.SendAsync(signalR, message);
-
-                        return message;
+                        await _hubContext.Clients.All.SendAsync("PublishCore", message);
                     }
                 }
             }

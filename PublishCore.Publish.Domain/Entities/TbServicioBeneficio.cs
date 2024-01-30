@@ -1,4 +1,6 @@
-﻿namespace PublishCore.Publish.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PublishCore.Publish.Domain.Entities;
 
 public partial class TbServicioBeneficio : BaseEntity
 {
@@ -13,6 +15,9 @@ public partial class TbServicioBeneficio : BaseEntity
     public int? Programacion { get; set; }
 
     public DateTime? FechaProgramacion { get; set; }
+
+    [NotMapped]
+    public string? Dirigido { get; set; }
 
     public virtual TbEmpresa EmpresaNavigation { get; set; } = null!;
 }

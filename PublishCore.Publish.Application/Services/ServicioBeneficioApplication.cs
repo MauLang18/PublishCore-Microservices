@@ -105,11 +105,13 @@ namespace PublishCore.Publish.Application.Services
 
                 var servicioBeneficio = _mapper.Map<TbServicioBeneficio>(requestDto);
                 servicioBeneficio.Imagen = await _unitOfWork.Storage.SaveFile(requestDto.Imagen!);
+
+                servicioBeneficio.Dirigido = "servicioBeneficioRegistrado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(servicioBeneficio));
                 response.Data = await _unitOfWork.ServicioBeneficio.RegisterAsync(servicioBeneficio);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("servicioBeneficioRegistrado", JsonConvert.SerializeObject(servicioBeneficio));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_SAVE;
                 }
@@ -155,11 +157,12 @@ namespace PublishCore.Publish.Application.Services
                     servicioBeneficio.Imagen = servicioBeneficioEdit.Data.Imagen!;
                 }
 
+                servicioBeneficio.Dirigido = "servicioBeneficioActualizado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(servicioBeneficio));
                 response.Data = await _unitOfWork.ServicioBeneficio.EditAsync(servicioBeneficio);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("servicioBeneficioActualizado", JsonConvert.SerializeObject(servicioBeneficio));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_UPDATE;
                 }
@@ -184,20 +187,21 @@ namespace PublishCore.Publish.Application.Services
             var response = new BaseResponse<bool>();
             try
             {
-                var servicioBeneficio = await ServivioBeneficioById(id);
+                var requestDto = await ServivioBeneficioById(id);
 
-                if (servicioBeneficio.Data is null)
+                if (requestDto.Data is null)
                 {
                     response.IsSuccess = false;
                     response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
                     return response;
                 }
-
+                var servicioBeneficio = _mapper.Map<TbServicioBeneficio>(requestDto);
+                servicioBeneficio.Dirigido = "servicioBeneficioEliminado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(servicioBeneficio));
                 response.Data = await _unitOfWork.ServicioBeneficio.RemoveAsync(id);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("servicioBeneficioEliminado", JsonConvert.SerializeObject(servicioBeneficio));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_DELETE;
                 }

@@ -106,11 +106,12 @@ namespace PublishCore.Auth.Application.Services
                 var account = _mapper.Map<TbUsuario>(requestDto);
                 account.Pass = BC.HashPassword(account.Pass);
 
+                account.Dirigido = "usuarioRegistrado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(account));
                 response.Data = await _unitOfWork.Usuario.RegisterAsync(account);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("usuarioRegistrado", JsonConvert.SerializeObject(account));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_SAVE;
                 }
@@ -156,11 +157,12 @@ namespace PublishCore.Auth.Application.Services
                     usuario.Pass = usuarioEdit.Data.Pass!;
                 }
 
+                usuario.Dirigido = "usuarioActualizado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(usuario));
                 response.Data = await _unitOfWork.Usuario.EditAsync(usuario);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("usuarioActualizado", JsonConvert.SerializeObject(usuario));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_UPDATE;
                 }
@@ -186,20 +188,22 @@ namespace PublishCore.Auth.Application.Services
             var response = new BaseResponse<bool>();
             try
             {
-                var usuario = await UsuarioById(id);
+                var requestDto = await UsuarioById(id);
 
-                if (usuario.Data is null)
+                if (requestDto.Data is null)
                 {
                     response.IsSuccess = false;
                     response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
                     return response;
                 }
 
+                var usuario = _mapper.Map<TbUsuario>(requestDto);
+                usuario.Dirigido = "usuarioEliminado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(usuario));
                 response.Data = await _unitOfWork.Usuario.RemoveAsync(id);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("usuarioEliminado", JsonConvert.SerializeObject(usuario));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_DELETE;
                 }

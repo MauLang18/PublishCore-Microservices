@@ -1,4 +1,6 @@
-﻿namespace PublishCore.Auth.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PublishCore.Auth.Domain.Entities;
 
 public partial class TbEmpresa : BaseEntity
 {
@@ -11,6 +13,9 @@ public partial class TbEmpresa : BaseEntity
     }
 
     public string Empresa { get; set; } = null!;
+
+    [NotMapped]
+    public string? Dirigido { get; set; }
 
     public virtual ICollection<TbBannerPrincipal> TbBannerPrincipals { get; set; }
     public virtual ICollection<TbBoletin> TbBoletins { get; set; }

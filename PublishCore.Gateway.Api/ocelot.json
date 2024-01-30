@@ -396,7 +396,6 @@
         }
       ],
       "UpstreamPathTemplate": "/hub",
-      "UpstreamHttpMethod": [ "GET" ],
       "Priority": 50,
       "RateLimitOptions": {
         "ClientWhitelist": [],

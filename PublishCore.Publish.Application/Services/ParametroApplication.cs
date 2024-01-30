@@ -103,11 +103,12 @@ namespace PublishCore.Publish.Application.Services
                 }
 
                 var parametro = _mapper.Map<TbParametro>(requestDto);
+                parametro.Dirigido = "parametroRegistrado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(parametro));
                 response.Data = await _unitOfWork.Parametro.RegisterAsync(parametro);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("parametroRegistrado", JsonConvert.SerializeObject(parametro));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_SAVE;
                 }
@@ -143,11 +144,12 @@ namespace PublishCore.Publish.Application.Services
 
                 var parametro = _mapper.Map<TbParametro>(requestDto);
                 parametro.Id = id;
+                parametro.Dirigido = "parametroActualizado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(parametro));
                 response.Data = await _unitOfWork.Parametro.EditAsync(parametro);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("parametroActualizado", JsonConvert.SerializeObject(parametro));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_UPDATE;
                 }
@@ -172,20 +174,22 @@ namespace PublishCore.Publish.Application.Services
             var response = new BaseResponse<bool>();
             try
             {
-                var parametro = await ParametroById(id);
+                var requestDto = await ParametroById(id);
 
-                if (parametro.Data is null)
+                if (requestDto.Data is null)
                 {
                     response.IsSuccess = false;
                     response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
                     return response;
                 }
 
+                var parametro = _mapper.Map<TbParametro>(requestDto);
+                parametro.Dirigido = "parametroEliminado";
+                await _producer.ProduceAsync("PublishCore", JsonConvert.SerializeObject(parametro));
                 response.Data = await _unitOfWork.Parametro.RemoveAsync(id);
 
                 if (response.Data)
                 {
-                    await _producer.ProduceAsync("parametroEliminado", JsonConvert.SerializeObject(parametro));
                     response.IsSuccess = true;
                     response.Message = ReplyMessage.MESSAGE_DELETE;
                 }

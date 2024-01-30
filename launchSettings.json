@@ -8,7 +8,8 @@
         "publishcore.hosted.api": "StartDebugging",
         "publishcore.hubs.api": "StartDebugging",
         "publishcore.publish.api": "StartDebugging",
-        "publishcore.auth.api": "StartDebugging"
+        "publishcore.auth.api": "StartDebugging",
+        "publishcore.hubss.api": "StartDebugging"
       }
     }
   }
